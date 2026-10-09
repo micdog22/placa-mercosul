@@ -1,4 +1,4 @@
-# Placa Mercosul — valide e converta placas de veículos brasileiras (JavaScript • Node.js)
+# Placa Mercosul: valide e converta placas de veículos brasileiras (JavaScript • Node.js)
 
 Biblioteca sem dependências para validar placas de veículos brasileiras e converter entre o padrão antigo (ABC-1234) e o padrão Mercosul (ABC1D23). Útil em cadastros, sistemas de estacionamento, oficinas e frotas, onde o mesmo carro pode aparecer com a placa antiga ou com a nova. Acompanha uma linha de comando e uma página de demonstração que desenha as duas placas.
 
@@ -118,4 +118,4 @@ Issues e pull requests são bem-vindos.
 
 ## Licença
 
-MIT — veja [LICENSE](LICENSE).
+MIT. Veja [LICENSE](LICENSE).
