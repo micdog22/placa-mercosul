@@ -1,0 +1,38 @@
+{
+  "name": "placa-mercosul",
+  "version": "1.0.0",
+  "description": "Valide e converta placas de veículos brasileiras entre o padrão antigo (ABC-1234) e o Mercosul (ABC1D23).",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "placa": "./bin/placa.js"
+  },
+  "files": [
+    "src",
+    "bin"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "placa",
+    "placa-mercosul",
+    "veiculos",
+    "detran",
+    "validacao",
+    "brasil",
+    "pt-br"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micdog22/placa-mercosul.git"
+  },
+  "homepage": "https://micdog22.github.io/placa-mercosul/"
+}

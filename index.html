@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Placa Mercosul — valide e converta placas de veículos</title>
+  <meta name="description" content="Valide placas de veículos brasileiras e converta entre o padrão antigo (ABC-1234) e o padrão Mercosul (ABC1D23).">
+  <meta name="theme-color" content="#1d4ed8">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./demo.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Placa Mercosul</h1>
+    <p class="lead">Valide placas de veículos brasileiras e converta entre o padrão antigo e o Mercosul.</p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="plate-title">
+      <h2 id="plate-title" class="visually-hidden">Digite a placa</h2>
+      <label for="plate-input">Placa</label>
+      <input id="plate-input" name="plate" type="text" value="ABC-1234" maxlength="12" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="plate-hint">
+      <p id="plate-hint" class="hint">Padrão antigo (ABC-1234) ou Mercosul (ABC1D23). Espaços, hífens e pontos são ignorados.</p>
+      <div class="examples" id="examples" aria-label="Exemplos">
+        <button type="button" class="chip" data-plate="ABC-1234">ABC-1234</button>
+        <button type="button" class="chip" data-plate="BRA2E19">BRA2E19</button>
+        <button type="button" class="chip" data-plate="RIO2A18">RIO2A18</button>
+        <button type="button" class="chip" data-plate="XYZ9K99">XYZ9K99</button>
+        <button type="button" class="chip" data-plate="AB-123">AB-123</button>
+      </div>
+      <p id="status" class="status" aria-live="polite"></p>
+    </section>
+
+    <section class="card" aria-labelledby="versions-title">
+      <h2 id="versions-title">As duas versões da placa</h2>
+      <div class="plates">
+        <figure class="plate-figure">
+          <div class="plate-frame">
+            <div class="plate mercosul" id="mercosul-plate" role="img" aria-label="Placa no padrão Mercosul">
+              <div class="band" aria-hidden="true"><span>BRASIL</span><i class="flag"></i></div>
+              <div class="characters" id="mercosul-text" aria-hidden="true"></div>
+            </div>
+          </div>
+          <figcaption>
+            <span id="mercosul-caption">Padrão Mercosul</span>
+            <button type="button" class="btn secondary small" id="copy-mercosul">Copiar</button>
+          </figcaption>
+        </figure>
+        <figure class="plate-figure">
+          <div class="plate-frame">
+            <div class="plate old" id="old-plate" role="img" aria-label="Placa no padrão antigo">
+              <div class="characters" id="old-text" aria-hidden="true"></div>
+            </div>
+          </div>
+          <figcaption>
+            <span id="old-caption">Padrão antigo</span>
+            <button type="button" class="btn secondary small" id="copy-old">Copiar</button>
+          </figcaption>
+        </figure>
+      </div>
+      <p id="notice" class="notice" role="status"></p>
+    </section>
+
+    <section class="card" aria-labelledby="rule-title">
+      <h2 id="rule-title">Como a conversão funciona</h2>
+      <p>Na passagem para o padrão Mercosul só o 5º caractere muda: o segundo número da placa antiga vira uma letra. O resto continua igual, então <strong>ABC-1234</strong> passa a ser <strong>ABC1C34</strong>.</p>
+      <div class="table-scroll">
+        <table class="conversion">
+          <caption class="visually-hidden">Número da placa antiga e letra correspondente no padrão Mercosul</caption>
+          <tbody>
+            <tr><th scope="row">Número</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+            <tr><th scope="row">Letra</th><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Placas Mercosul com uma letra de K a Z nessa posição foram emitidas já no padrão novo e não têm versão no padrão antigo. A placa Mercosul também não indica o estado nem a cidade do veículo.</p>
+    </section>
+
+    <section class="card" aria-labelledby="usage-title">
+      <h2 id="usage-title">Use no seu projeto</h2>
+      <p>Biblioteca JavaScript sem dependências, para Node.js e navegador, com linha de comando.</p>
+      <pre><code>npm install github:micdog22/placa-mercosul
+
+import { validar, paraMercosul, paraAntiga } from 'placa-mercosul';
+
+validar('abc-1234');      // { valida: true, formato: 'antiga', placa: 'ABC1234', motivo: null }
+paraMercosul('ABC-1234'); // 'ABC1C34'
+paraAntiga('ABC1C34');    // 'ABC1234'
+paraAntiga('ABC1K34');    // null (emitida já no padrão Mercosul)</code></pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Tudo roda no seu navegador. Código aberto no <a href="https://github.com/micdog22/placa-mercosul">GitHub</a> · Licença MIT</p>
+  </footer>
+</body>
+</html>
